@@ -1,0 +1,34 @@
+#ifndef LOGIN_WINDOW_HPP
+#define LOGIN_WINDOW_HPP
+
+#include <QWidget>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
+
+#include "clickable_label.hpp"
+
+class LoginWindow : public QWidget {
+ Q_OBJECT
+
+ public:
+    explicit LoginWindow(QWidget *parent = nullptr);
+    ~LoginWindow() override = default;
+
+ private:
+    QLineEdit *const login_field;
+    QLineEdit *const password_field;
+    QPushButton *const login_button;
+    ClickableLabel *const forgot_password_button;
+
+    void Initialize();
+ signals:
+    void Authorized(const QString &login, const QString &password);
+
+ private slots:
+    void LoginButtonClicked();
+    void ForgotPasswordButtonClicked();
+    void SetPlaceholderColor();
+};
+
+#endif
