@@ -1,3 +1,4 @@
+#include <QLabel>
 #include <QVBoxLayout>
 
 #include "../includes/login_window.hpp"
@@ -8,30 +9,33 @@ LoginWindow::LoginWindow(QWidget *parent)
     , login_field{new QLineEdit{this}}
     , password_field{new QLineEdit{this}}
     , login_button{new QPushButton{config::login_window::LOGIN_LABEL, this}}
-    , forgot_password_button{new ClickableLabel{config::login_window::FORGOT_PASSWORD_LABEL, this}} {
+    , forgot_password_button{new QPushButton{config::login_window::FORGOT_PASSWORD_LABEL, this}} {
     Initialize();
 }
 
 void LoginWindow::Initialize() {
-    setObjectName(config::login_window::OBJECT_NAME);
+    using namespace config;
+
+    setObjectName(login_window::OBJECT_NAME);
 
     auto *const logotype = new QLabel{this};
-    logotype->setPixmap(QPixmap::fromImage(QImage{config::LOGOTYPE_PATH}).scaled(
-        config::login_window::LOGOTYPE_WIDTH,
-        config::login_window::LOGOTYPE_HEIGHT));
+    logotype->setPixmap(QPixmap::fromImage(QImage{LOGOTYPE_PATH}).scaled(
+        login_window::LOGOTYPE_WIDTH,
+        login_window::LOGOTYPE_HEIGHT));
 
-    login_field->setFixedSize(config::login_window::FIXED_FORM_LINE_WIDTH,
-                              config::login_window::FIXED_FORM_LINE_HEIGHT);
-    login_field->setPlaceholderText(config::login_window::LOGIN_PLACEHOLDER);
+    login_field->setFixedSize(login_window::FIXED_FORM_LINE_WIDTH, login_window::FIXED_FORM_LINE_HEIGHT);
+    login_field->setPlaceholderText(login_window::LOGIN_PLACEHOLDER);
 
-    password_field->setFixedSize(config::login_window::FIXED_FORM_LINE_WIDTH,
-                                 config::login_window::FIXED_FORM_LINE_HEIGHT);
-    password_field->setPlaceholderText(config::login_window::PASSWORD_PLACEHOLDER);
+    password_field->setFixedSize(login_window::FIXED_FORM_LINE_WIDTH, login_window::FIXED_FORM_LINE_HEIGHT);
+    password_field->setPlaceholderText(login_window::PASSWORD_PLACEHOLDER);
     password_field->setEchoMode(QLineEdit::Password);
 
-    login_button->setFixedSize(config::login_window::FIXED_FORM_LINE_WIDTH,
-                               config::login_window::FIXED_FORM_LINE_HEIGHT);
+    login_button->setObjectName(login_window::LOGIN_BUTTON_OBJECT_NAME);
+    login_button->setFixedSize(login_window::FIXED_FORM_LINE_WIDTH, login_window::FIXED_FORM_LINE_HEIGHT);
     login_button->setCursor(Qt::PointingHandCursor);
+
+    forgot_password_button->setObjectName(login_window::FORGOT_PASSWORD_BUTTON_OBJECT_NAME);
+    forgot_password_button->setCursor(Qt::PointingHandCursor);
 
     auto *const vertical_layout = new QVBoxLayout{this};
     vertical_layout->addStretch(1);
@@ -46,7 +50,7 @@ void LoginWindow::Initialize() {
     connect(login_field, &QLineEdit::textChanged, this, &LoginWindow::SetPlaceholderColor);
     connect(password_field, &QLineEdit::textChanged, this, &LoginWindow::SetPlaceholderColor);
     connect(login_button, &QPushButton::clicked, this, &LoginWindow::LoginButtonClicked);
-    connect(forgot_password_button, &ClickableLabel::clicked, this, &LoginWindow::ForgotPasswordButtonClicked);
+    connect(forgot_password_button, &QPushButton::clicked, this, &LoginWindow::ForgotPasswordButtonClicked);
 }
 
 void LoginWindow::SetPlaceholderColor() {

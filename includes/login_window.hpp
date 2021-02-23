@@ -4,9 +4,6 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QLabel>
-
-#include "clickable_label.hpp"
 
 class LoginWindow : public QWidget {
  Q_OBJECT
@@ -19,7 +16,7 @@ class LoginWindow : public QWidget {
     QLineEdit *const login_field;
     QLineEdit *const password_field;
     QPushButton *const login_button;
-    ClickableLabel *const forgot_password_button;
+    QPushButton *const forgot_password_button;
 
     void Initialize();
  signals:
