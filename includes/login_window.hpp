@@ -19,6 +19,7 @@ class LoginWindow : public QWidget {
     QPushButton *const forgot_password_button;
 
     void Initialize();
+
  signals:
     void Authorized(const QString &login, const QString &password);
 

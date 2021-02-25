@@ -3,13 +3,14 @@
 
 #include "../includes/login_window.hpp"
 #include "../includes/config.hpp"
+#include "../includes/image.hpp"
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QWidget(parent)
     , login_field{new QLineEdit{this}}
     , password_field{new QLineEdit{this}}
-    , login_button{new QPushButton{config::login_window::LOGIN_LABEL, this}}
-    , forgot_password_button{new QPushButton{config::login_window::FORGOT_PASSWORD_LABEL, this}} {
+    , login_button{new QPushButton{config::login_window::LOGIN_BUTTON_LABEL, this}}
+    , forgot_password_button{new QPushButton{config::login_window::FORGOT_PASSWORD_BUTTON_LABEL, this}} {
     Initialize();
 }
 
@@ -18,16 +19,13 @@ void LoginWindow::Initialize() {
 
     setObjectName(login_window::OBJECT_NAME);
 
-    auto *const logotype = new QLabel{this};
-    logotype->setPixmap(QPixmap::fromImage(QImage{LOGOTYPE_PATH}).scaled(
-        login_window::LOGOTYPE_WIDTH,
-        login_window::LOGOTYPE_HEIGHT));
+    auto *const logotype = new Image(LOGOTYPE_PATH, login_window::LOGOTYPE_WIDTH, login_window::LOGOTYPE_HEIGHT);
 
     login_field->setFixedSize(login_window::FIXED_FORM_LINE_WIDTH, login_window::FIXED_FORM_LINE_HEIGHT);
-    login_field->setPlaceholderText(login_window::LOGIN_PLACEHOLDER);
+    login_field->setPlaceholderText(login_window::LOGIN_FIELD_PLACEHOLDER);
 
     password_field->setFixedSize(login_window::FIXED_FORM_LINE_WIDTH, login_window::FIXED_FORM_LINE_HEIGHT);
-    password_field->setPlaceholderText(login_window::PASSWORD_PLACEHOLDER);
+    password_field->setPlaceholderText(login_window::PASSWORD_FIELD_PLACEHOLDER);
     password_field->setEchoMode(QLineEdit::Password);
 
     login_button->setObjectName(login_window::LOGIN_BUTTON_OBJECT_NAME);
