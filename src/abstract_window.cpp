@@ -4,7 +4,8 @@
 
 AbstractWindow::AbstractWindow(QStackedLayout &stack, QWidget *parent)
     : QWidget{parent}
-    , m_stack{stack} {
+    , m_stack{stack}
+    , m_previous_widget{stack.isEmpty() ? nullptr : stack.currentWidget()} {
 }
 
 void AbstractWindow::PutSelfToStack() {
@@ -14,6 +15,7 @@ void AbstractWindow::PutSelfToStack() {
 
 void AbstractWindow::RemoveSelfFromStack() {
     m_stack.removeWidget(this);
+    m_stack.setCurrentWidget(m_previous_widget);
 }
 
 void AbstractWindow::SetStyleSheet(const QString &qss_file_path) {

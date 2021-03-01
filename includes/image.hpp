@@ -19,7 +19,6 @@ class Image : public QLabel {
 
     Image(const QString &image_path, int width, int height, int properties, QWidget *parent = nullptr);
     Image(const QUrl &url, int width, int height, int properties, QWidget *parent = nullptr);
-
     ~Image() override = default;
 
  private slots:

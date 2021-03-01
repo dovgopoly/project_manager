@@ -20,6 +20,7 @@ Image::Image(const QUrl &url, const int width, const int height, const int prope
     , m_properties{properties} {
 
     using namespace config;
+
     SetImage(QImage{UNKNOWN_IMAGE_PATH});
     BuildPixmapWithUrl(url);
 }

@@ -10,7 +10,6 @@ void ProjectDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
     if (!index.isValid()) {
         return;
     }
-    qDebug() << "paint";
     painter->save();
     auto *const project_widget = new ProjectWidget{qvariant_cast<Project>(index.model()->data(index, Qt::DisplayRole))};
     project_widget->resize(option.rect.size());
@@ -26,7 +25,6 @@ QSize ProjectDelegate::sizeHint(const QStyleOptionViewItem &option, const QModel
     if (!index.isValid()) {
         return QSize{};
     }
-    qDebug() << "sizeHint";
     auto *const project_widget = new ProjectWidget{qvariant_cast<Project>(index.model()->data(index, Qt::DisplayRole))};
     return project_widget->sizeHint();
 }

@@ -6,6 +6,7 @@ AbstractRequester::AbstractRequester(QObject *parent)
 
 void AbstractRequester::ReceiveData() {
     auto *const reply = qobject_cast<QNetworkReply *>(sender());
+    reply->deleteLater();
     if (reply->error() == QNetworkReply::NoError) {
         const auto reply_code =
             static_cast<Api::HttpCode>(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt());

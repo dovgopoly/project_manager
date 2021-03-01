@@ -3,7 +3,7 @@
 ProjectModel::ProjectModel(QObject *parent)
     : QAbstractListModel{parent} {
     // mocked data
-    for (int i = 0; i < 30; ++i) {
+    for (int i = 0; i < 1; ++i) {
         m_list.append(Project(0, QString{"project %1"}.arg(i), QUrl{"https://i.ibb.co/xLHd5mZ/4.jpg"}));
     }
 }

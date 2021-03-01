@@ -10,5 +10,6 @@ ImageLoader &ImageLoader::GetInstance() {
 }
 
 void ImageLoader::LoadImage(const QUrl &url) const {
-    connect(Api::GetInstance().Get(url), &QNetworkReply::finished, this, &ImageLoader::ReceiveData);
+    auto *const response = Api::GetInstance().Get(url);
+    connect(response, &QNetworkReply::finished, this, &ImageLoader::ReceiveData);
 }

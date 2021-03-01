@@ -77,7 +77,6 @@ void LoginWindow::LoginButtonClicked() {
 }
 
 void LoginWindow::ForgotPasswordButtonClicked() {
-    qDebug() << "LoginWindow::ForgotPasswordButtonClicked()";
     // TODO: implement
 }
 
@@ -88,7 +87,6 @@ void LoginWindow::ParseToken(const QByteArray &json_to_parse) {
 }
 
 void LoginWindow::ShowErrorsToUser(const std::variant<QString, Api::HttpCode> &reason) {
-    qDebug() << "LoginWindow::ShowErrorsToUser";
     // TODO: implement
 }
 

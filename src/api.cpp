@@ -4,7 +4,6 @@ Api::Api(QObject *parent)
     : QObject{parent}
     , m_network_manager{new QNetworkAccessManager{this}} {
     connect(m_network_manager, &QNetworkAccessManager::sslErrors, this, &Api::IgnoreSslErrors);
-    connect(m_network_manager, &QNetworkAccessManager::finished, m_network_manager, &QNetworkAccessManager::deleteLater);
 }
 
 Api &Api::GetInstance() {

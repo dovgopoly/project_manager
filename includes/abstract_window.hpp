@@ -18,6 +18,7 @@ class AbstractWindow : public QWidget {
 
  private:
     QStackedLayout &m_stack;
+    QWidget *m_previous_widget;
 };
 
 #endif

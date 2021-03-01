@@ -36,6 +36,7 @@ class Api : public QObject {
 
     QNetworkAccessManager *const m_network_manager;
 
+
  private slots:
     void IgnoreSslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
 };
