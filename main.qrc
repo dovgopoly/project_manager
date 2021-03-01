@@ -1,0 +1,10 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/img">
+        <file alias="logotype.jpg">resources/img/logotype.jpg</file>
+        <file alias="unknown.jpg">resources/img/unknown.jpg</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file alias="main.qss">resources/qss/main.qss</file>
+    </qresource>
+</RCC>
