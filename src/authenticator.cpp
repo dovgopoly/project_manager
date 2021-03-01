@@ -12,9 +12,10 @@ Authenticator &Authenticator::GetInstance() {
 
 void Authenticator::AuthenticateUser(const QString &login, const QString &password) const {
     using namespace private_config;
-    connect(Api::GetInstance().Post(
+    auto *const response = Api::GetInstance().Post(
         QUrl{QString{"%1/project/login/"}.arg(LINK_PREFIX)},
         {{"content-type", "application/json"}},
         QString{R"({"login" : "%1", "password" : "%2"})"}.arg(login, password)
-    ), &QNetworkReply::finished, this, &Authenticator::ReceiveData);
+    );
+    connect(response, &QNetworkReply::finished, this, &Authenticator::ReceiveData);
 }
