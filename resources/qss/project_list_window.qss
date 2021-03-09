@@ -1,0 +1,41 @@
+QScrollBar:vertical {
+    background: #32CC99;
+    width: 3px;
+}
+
+QScrollBar::handle:vertical {
+    background: black;
+    width: 3px;
+}
+
+QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar::add-line:horizontal {
+    border: none;
+    background: none;
+}
+
+QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+}
+
+QWidget {
+    background-color: white;
+}
+
+QPushButton {
+    border: none;
+    font-size: 17px;
+    color: #ff584d;
+    font-weight: bold;
+    margin: 0px 0px 15px 20px;
+}
+
+QPushButton:hover {
+    color: #f76e65;
+}

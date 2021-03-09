@@ -1,0 +1,37 @@
+QScrollBar:vertical {
+    background: #32CC99;
+    width: 3px;
+}
+
+QScrollBar::handle:vertical {
+    background: black;
+    width: 3px;
+}
+
+QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar::add-line:horizontal {
+    border: none;
+    background: none;
+}
+
+QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+}
+
+QWidget {
+    background-color: #dae2ea;
+}
+
+QListView#ProjectView {
+    background-color: white;
+}
+
+QListView#TicketView {
+    padding: 20px 30px;
+}
