@@ -6,8 +6,6 @@
 #include "../includes/ticket_list_window.hpp"
 #include "../includes/header.hpp"
 
-#include "../other/waiting_spinner/waiting_spinner_widget.h"
-
 ProjectListWindow::ProjectListWindow(Stack &stack, QWidget *parent)
     : AbstractWindow{stack, parent}
     , m_project_list_view{new QListView{this}}
@@ -41,10 +39,11 @@ void ProjectListWindow::Initialize() {
     connect(m_project_model, &ProjectModel::UpdatingBegin, waiting_spinner, &WaitingSpinnerWidget::start);
     connect(m_project_model, &ProjectModel::UpdatingEnd, waiting_spinner, &WaitingSpinnerWidget::stop);
     connect(m_project_list_view, &QListView::clicked, this, &ProjectListWindow::ProjectClicked);
+    connect(m_project_model, &ProjectModel::ImageUpdated, this, &ProjectListWindow::UpdateProjectListView);
 }
 
 int ProjectListWindow::GetHeaderFlags() const {
-    return Header::ShowHeader | Header::ShowTitle | Header::ShowBackArrow;
+    return Header::ShowHeader | Header::ShowTitle;
 }
 
 QString ProjectListWindow::GetHeaderTitle() const {
@@ -54,8 +53,13 @@ QString ProjectListWindow::GetHeaderTitle() const {
 
 void ProjectListWindow::ProjectClicked(const QModelIndex &index) {
     m_project_model->setData(QModelIndex{}, index, ProjectModel::ChosenProjectRole);
+    UpdateProjectListView();
+}
+
+void ProjectListWindow::UpdateProjectListView() {
     m_project_list_view->viewport()->update();
 }
+
 
 void ProjectListWindow::ProjectDoubleClicked(const QModelIndex &index) {
     auto *const ticket_list_window = new TicketListWindow(GetStack(), parentWidget());

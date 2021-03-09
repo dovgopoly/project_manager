@@ -66,6 +66,7 @@ void Image::SetImage(const QImage &image) {
     } else {
         setPixmap(image_pixmap);
     }
+    emit Updated();
 }
 
 void Image::ReceiveImage(const QByteArray &byte_array) {
@@ -75,5 +76,5 @@ void Image::ReceiveImage(const QByteArray &byte_array) {
 }
 
 void Image::mousePressEvent(QMouseEvent *event) {
-    emit clicked();
+    emit Clicked();
 }

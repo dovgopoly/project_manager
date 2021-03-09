@@ -20,9 +20,11 @@ constexpr auto HEADER_HEIGHT = 70;
 constexpr auto ARROW_BACK_ICON_PATH = ":/img/back_arrow.jpg";
 constexpr auto ARROW_ICON_WIDTH = 30;
 constexpr auto ARROW_ICON_HEIGHT = 30;
-constexpr auto HEADER_MARGINS = QMargins{30, 0, 30 + ARROW_ICON_WIDTH, 0};
+constexpr auto HEADER_MARGINS_WITH_BACK_ARROW = QMargins{30, 0, 30 + ARROW_ICON_WIDTH, 0};
+constexpr auto HEADER_MARGINS_WITHOUT_BACK_ARROW = QMargins{30, 0, 30, 0};
 constexpr auto LOGOTYPE_WIDTH = 50;
 constexpr auto LOGOTYPE_HEIGHT = 50;
+constexpr auto HEADER_STYLESHEET = ":/qss/header.qss";
 
 }
 
@@ -69,6 +71,7 @@ constexpr auto ICON_WIDTH = 50;
 constexpr auto ICON_HEIGHT = 50;
 constexpr auto FONT_SIZE = 15;
 constexpr auto SPACING = 15;
+constexpr auto HEIGHT = 70;
 
 }
 
@@ -78,6 +81,42 @@ namespace ticket_list_window {
 
 constexpr auto HEADER_TITLE = "Tickets";
 constexpr auto STYLESHEET_PATH = ":/qss/ticket_list_window.qss";
+constexpr auto TICKET_LIST_SPACING = 15;
+constexpr auto TICKET_LIST_MIN_WIDTH = 500;
+constexpr auto TICKET_LIST_MAX_WIDTH = 700;
+constexpr auto PROJECT_ICON_LIST_WIDTH = 70;
+constexpr auto PROJECT_ICON_ITEM_HEIGHT = 70;
+constexpr auto PROJECT_ICON_VIEW_OBJECT_NAME = "ProjectView";
+constexpr auto TICKET_VIEW_OBJECT_NAME = "TicketView";
+
+
+namespace ticket_item {
+
+constexpr auto SPACING = 15;
+constexpr auto HEIGHT = 140;
+constexpr auto HOVER_COLOR =  QColor{245, 245, 245};
+constexpr auto RADIUS = 15;
+constexpr auto CONTENT_MARGIN = 16;
+constexpr auto HEADER_FONT_SIZE = 18;
+constexpr auto DESCRIPTION_FONT_SIZE = 14;
+constexpr auto PRIORITY_WIDGET_RADIUS = 5;
+constexpr auto PRIORITY_WIDGET_VERTICAL_SPACING = 2;
+constexpr auto PRIORITY_WIDGET_HORIZONTAL_SPACING = 2;
+constexpr auto EMPTY_DESCRIPTION_LABEL = "No description yet :(";
+constexpr auto MAX_LETTERS_COEFFICIENT = 1.5f;
+constexpr auto SHADOW_THICKNESS = 3;
+constexpr auto GRADIENT_BEGIN_COLOR = QColor{180, 180, 180, 125};
+constexpr auto GRADIENT_END_COLOR = QColor{120, 120, 120, 125};
+
+}
+
+namespace icon_item {
+
+constexpr auto CONTENT_MARGIN = 10;
+constexpr auto WIDTH = 50;
+constexpr auto HEIGHT = 50;
+
+}
 
 }
 

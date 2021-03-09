@@ -64,10 +64,8 @@ void ProjectDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
 
     if (index.row() < index.model()->rowCount() - 1) {
         painter->setPen(QPen{Qt::gray, 1});
-        painter->drawLine(option.rect.bottomLeft().x(),
-                          option.rect.bottomLeft().y() + 2,
-                          option.rect.bottomRight().x(),
-                          option.rect.bottomRight().y() + 2);
+        painter->drawLine(QPoint{option.rect.bottomLeft().x(), option.rect.bottomLeft().y() + 2},
+                          QPoint{option.rect.bottomRight().x(), option.rect.bottomRight().y() + 2});
     }
 
     painter->restore();
@@ -78,5 +76,5 @@ QSize ProjectDelegate::sizeHint(const QStyleOptionViewItem &option, const QModel
     if (!index.isValid()) {
         return QSize{};
     }
-    return QSize(0, 2 * CONTENT_MARGIN + ICON_HEIGHT);
+    return QSize(0, HEIGHT);
 }

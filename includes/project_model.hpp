@@ -25,6 +25,7 @@ class ProjectModel : public QAbstractListModel {
  signals:
     void UpdatingBegin();
     void UpdatingEnd();
+    void ImageUpdated();
 
  private:
     void Initialize();

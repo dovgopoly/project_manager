@@ -55,7 +55,7 @@ QSize PriorityWidget::sizeHint() const {
 }
 
 void PriorityWidget::Increment() {
-    if (m_priority < 5) {
+    if (m_priority < HORIZONTAL_DOTS_COUNT) {
         ++m_priority;
     }
 }

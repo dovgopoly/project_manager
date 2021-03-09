@@ -1,4 +1,5 @@
 #include <QHBoxLayout>
+#include <QFile>
 
 #include "../includes/header.hpp"
 #include "../includes/config.hpp"
@@ -10,7 +11,8 @@ Header::Header(QWidget *parent)
                                   config::main_window::header::ARROW_ICON_HEIGHT,
                                   Image::HighQuality,
                                   this}}
-    , m_title{new QLabel{this}} {
+    , m_title{new QLabel{this}}
+    , m_main_layout{new QHBoxLayout{this}} {
 
     Initialize();
 }
@@ -22,20 +24,26 @@ void Header::Initialize() {
     setAttribute(Qt::WA_StyledBackground, true);
     setFixedHeight(HEADER_HEIGHT);
 
-    setStyleSheet("background-color: white; font-size: 18px; font-weight: normal;");
+    QFile file{HEADER_STYLESHEET};
+    file.open(QFile::ReadOnly);
+    setStyleSheet(file.readAll());
+    file.close();
 
     auto *const logotype_icon =
         new Image{LOGOTYPE_PATH, LOGOTYPE_WIDTH, LOGOTYPE_HEIGHT, Image::HighQuality, this};
 
-    auto *const main_horizontal_layout = new QHBoxLayout{this};
-    main_horizontal_layout->setContentsMargins(HEADER_MARGINS);
-    main_horizontal_layout->setAlignment(Qt::AlignVCenter);
+    m_main_layout->setSpacing(ZERO_SPACING);
+    m_main_layout->setContentsMargins(HEADER_MARGINS_WITHOUT_BACK_ARROW);
+    m_main_layout->setAlignment(Qt::AlignVCenter);
 
-    main_horizontal_layout->addWidget(m_back_arrow_icon);
-    main_horizontal_layout->addStretch(1);
-    main_horizontal_layout->addWidget(logotype_icon);
-    main_horizontal_layout->addWidget(m_title);
-    main_horizontal_layout->addStretch(1);
+    m_back_arrow_icon->setCursor(Qt::PointingHandCursor);
+
+    m_main_layout->addWidget(m_back_arrow_icon);
+    m_main_layout->addStretch(1);
+    m_main_layout->addWidget(logotype_icon);
+    m_main_layout->addWidget(m_title);
+    m_main_layout->addStretch(1);
+
 }
 
 void Header::SetTitle(const QString &title) {
@@ -43,6 +51,7 @@ void Header::SetTitle(const QString &title) {
 }
 
 void Header::SetProperties(int properties) {
+    using namespace config::main_window::header;
     if (properties & ShowHeader) {
         show();
     } else {
@@ -50,8 +59,10 @@ void Header::SetProperties(int properties) {
     }
     if (properties & ShowBackArrow) {
         m_back_arrow_icon->show();
+        m_main_layout->setContentsMargins(HEADER_MARGINS_WITH_BACK_ARROW);
     } else {
         m_back_arrow_icon->hide();
+        m_main_layout->setContentsMargins(HEADER_MARGINS_WITHOUT_BACK_ARROW);
     }
     if (properties & ShowTitle) {
         m_title->show();

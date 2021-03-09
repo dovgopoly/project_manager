@@ -29,6 +29,7 @@ class ProjectListWindow : public AbstractWindow {
  private slots:
     void ProjectClicked(const QModelIndex &index);
     void ProjectDoubleClicked(const QModelIndex &index);
+    void UpdateProjectListView();
 };
 
 #endif

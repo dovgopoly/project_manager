@@ -12,5 +12,6 @@
         <file alias="project_list_window.qss">resources/qss/project_list_window.qss</file>
         <file alias="ticket_list_window.qss">resources/qss/ticket_list_window.qss</file>
         <file alias="ticket_edit_window.qss">resources/qss/ticket_edit_window.qss</file>
+        <file alias="header.qss">resources/qss/header.qss</file>
     </qresource>
 </RCC>

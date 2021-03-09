@@ -4,7 +4,7 @@ QScrollBar:vertical {
 }
 
 QScrollBar::handle:vertical {
-    background: black;
+    background: darkgray;
     width: 3px;
 }
 

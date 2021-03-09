@@ -1,7 +1,7 @@
+#include <QGraphicsDropShadowEffect>
 #include "../includes/main_window.hpp"
 #include "../includes/config.hpp"
 #include "../includes/project_list_window.hpp"
-#include "../includes/ticket_edit_window.hpp"
 #include "../includes/header.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -25,9 +25,8 @@ void MainWindow::Initialize() {
     main_layout->setContentsMargins(ZERO_MARGINS);
     main_layout->addWidget(m_header);
     main_layout->addLayout(m_stack);
-
     connect(m_stack, &Stack::CurrentWidgetChanged, this, &MainWindow::SetupWindow);
-    connect(m_header->m_back_arrow_icon, &Image::clicked, m_stack, &Stack::Pop);
+    connect(m_header->m_back_arrow_icon, &Image::Clicked, m_stack, &Stack::Pop);
 
     auto *const login_window = new LoginWindow{*m_stack};
     login_window->PutSelfToStack();

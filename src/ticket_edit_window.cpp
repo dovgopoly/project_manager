@@ -56,6 +56,11 @@ void TicketEditWindow::Initialize() {
     m_save_button->setObjectName(SAVE_BUTTON_LABEL);
     m_cancel_button->setObjectName(CANCEL_BUTTON_LABEL);
 
+    m_save_button->setCursor(Qt::PointingHandCursor);
+    m_cancel_button->setCursor(Qt::PointingHandCursor);
+    m_up_arrow_button->setCursor(Qt::PointingHandCursor);
+    m_down_arrow_button->setCursor(Qt::PointingHandCursor);
+
     auto *const buttons_layout = new QHBoxLayout;
     buttons_layout->setAlignment(Qt::AlignRight);
     buttons_layout->addWidget(m_cancel_button);
@@ -65,11 +70,11 @@ void TicketEditWindow::Initialize() {
     form_vertical_layout->addLayout(buttons_layout);
     form_vertical_layout->setAlignment(Qt::AlignCenter);
 
-    connect(m_up_arrow_button, &Image::clicked, [=]() {
+    connect(m_up_arrow_button, &Image::Clicked, [=]() {
         m_priority_widget->Increment();
         m_priority_widget->update();
     });
-    connect(m_down_arrow_button, &Image::clicked, [=]() {
+    connect(m_down_arrow_button, &Image::Clicked, [=]() {
         m_priority_widget->Decrement();
         m_priority_widget->update();
     });

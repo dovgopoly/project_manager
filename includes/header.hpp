@@ -28,6 +28,7 @@ class Header : public QWidget {
 
     Image *const m_back_arrow_icon;
     QLabel *const m_title;
+    QHBoxLayout *const m_main_layout;
 };
 
 #endif

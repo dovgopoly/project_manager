@@ -22,7 +22,8 @@ class Image : public QLabel {
     Image(const QUrl &url, int width, int height, int properties, QWidget *parent = nullptr);
 
  signals:
-    void clicked();
+    void Clicked();
+    void Updated();
 
  protected:
     void mousePressEvent(QMouseEvent *event) override;

@@ -75,6 +75,9 @@ void ProjectModel::ParseProjectsToList(const QByteArray &json_to_parse) {
         const auto icon = QUrl{project_object["icon"].toString()};
         const auto id = project_object["id"].toString().toInt();
         m_project_list.emplace_back(id, name, icon);
+        connect(m_project_list.back().GetIcon(), &Image::Updated, [=] {
+            emit ImageUpdated();
+        });
     }
     endInsertRows();
 
