@@ -7,6 +7,7 @@
 #include <QPainterPath>
 
 #include "api.hpp"
+#include "image_loader.hpp"
 
 class Image : public QLabel {
  Q_OBJECT
@@ -14,12 +15,17 @@ class Image : public QLabel {
     enum : int {
         DisableAll = 0,
         RoundedCorners = 1 << 0,
-        HighQuality = 1 << 1
+        HighQuality = 1 << 1,
     };
 
     Image(const QString &image_path, int width, int height, int properties, QWidget *parent = nullptr);
     Image(const QUrl &url, int width, int height, int properties, QWidget *parent = nullptr);
-    ~Image() override = default;
+
+ signals:
+    void clicked();
+
+ protected:
+    void mousePressEvent(QMouseEvent *event) override;
 
  private slots:
     void ReceiveImage(const QByteArray &byte_array);
@@ -35,6 +41,8 @@ class Image : public QLabel {
     int m_height;
     int m_properties;
     QPixmap m_pixmap;
+
+    ImageLoader *const m_image_loader{nullptr};
 };
 
 #endif

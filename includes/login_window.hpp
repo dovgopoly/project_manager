@@ -11,17 +11,16 @@ class LoginWindow : public AbstractWindow {
  Q_OBJECT
 
  public:
-    explicit LoginWindow(QStackedLayout &stack, QWidget *parent = nullptr);
-    ~LoginWindow() override = default;
+    explicit LoginWindow(Stack &stack, QWidget *parent = nullptr);
 
  private:
-    QLineEdit *const login_field;
-    QLineEdit *const password_field;
-    QPushButton *const login_button;
-    QPushButton *const forgot_password_button;
+    QLineEdit *const m_login_field;
+    QLineEdit *const m_password_field;
+    QPushButton *const m_login_button;
+    QPushButton *const m_forgot_password_button;
 
     void Initialize();
-    void SignInToAccount(int token);
+    void SignInToAccount(const QString &token);
 
  signals:
     void Authorized(const QString &login, const QString &password);

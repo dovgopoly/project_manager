@@ -22,3 +22,19 @@ QString Ticket::GetDescription() const {
 int Ticket::GetPriority() const {
     return m_priority;
 }
+
+void Ticket::SetId(const int id) {
+    m_id = id;
+}
+
+void Ticket::SetName(QString name) {
+    m_name = std::move(name);
+}
+
+void Ticket::SetDescription(QString description) {
+    m_description = std::move(description);
+}
+
+void Ticket::SetPriority(const int priority) {
+    m_priority = priority;
+}

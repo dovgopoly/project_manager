@@ -16,18 +16,16 @@ class Project {
     ~Project() = default;
     Project(const Project &) = default;
     Project &operator=(const Project &) = default;
-    Project(int id, QString name, const QUrl &icon, std::optional<QList<Ticket>> tickets = std::nullopt);
+    Project(int id, QString name, const QUrl &icon);
 
     int GetId() const;
     QString GetName() const;
     Image *GetIcon() const;
-    std::optional<QList<Ticket>> GetTickets() const;
 
  private:
     int m_id;
     QString m_name;
     Image *m_icon;
-    std::optional<QList<Ticket>> m_tickets;
 };
 
 Q_DECLARE_METATYPE(Project);

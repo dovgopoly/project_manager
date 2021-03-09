@@ -1,7 +1,6 @@
 #include <QPainter>
 
 #include "../includes/image.hpp"
-#include "../includes/image_loader.hpp"
 #include "../includes/config.hpp"
 
 Image::Image(const QString &image_path, const int width, const int height, const int properties, QWidget *parent)
@@ -17,7 +16,8 @@ Image::Image(const QUrl &url, const int width, const int height, const int prope
     : QLabel{parent}
     , m_width{width}
     , m_height{height}
-    , m_properties{properties} {
+    , m_properties{properties}
+    , m_image_loader{new ImageLoader} {
 
     using namespace config;
 
@@ -36,6 +36,8 @@ QPixmap Image::BuildPixmapWithRoundCorners(const QPixmap &source_pixmap) const {
     painter_path.addRoundedRect(0, 0, width, height, width, height);
 
     auto painter = QPainter(&pixmap_with_round_corners);
+
+    painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setClipPath(painter_path);
     painter.drawPixmap(0, 0, source_pixmap);
 
@@ -43,17 +45,16 @@ QPixmap Image::BuildPixmapWithRoundCorners(const QPixmap &source_pixmap) const {
 }
 
 QPixmap Image::BuildPixmapFromImage(const QImage &image) const {
-    return QPixmap::fromImage(image.scaled(
+    return QPixmap::fromImage(image).scaled(
         m_width,
         m_height,
         m_properties & Image::HighQuality ? Qt::KeepAspectRatio : Qt::IgnoreAspectRatio,
-        m_properties & Image::HighQuality ? Qt::SmoothTransformation : Qt::FastTransformation));
+        m_properties & Image::HighQuality ? Qt::SmoothTransformation : Qt::FastTransformation);
 }
 
 void Image::BuildPixmapWithUrl(const QUrl &image_url) const {
-    auto &image_loader = ImageLoader::GetInstance();
-    connect(&image_loader, &ImageLoader::ResponseReady, this, &Image::ReceiveImage);
-    image_loader.LoadImage(image_url);
+    connect(m_image_loader, &ImageLoader::ResponseReady, this, &Image::ReceiveImage);
+    m_image_loader->LoadImage(image_url);
 }
 
 void Image::SetImage(const QImage &image) {
@@ -71,4 +72,8 @@ void Image::ReceiveImage(const QByteArray &byte_array) {
     QImage image;
     image.loadFromData(byte_array);
     SetImage(image);
+}
+
+void Image::mousePressEvent(QMouseEvent *event) {
+    emit clicked();
 }

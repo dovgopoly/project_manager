@@ -3,8 +3,14 @@
     <qresource prefix="/img">
         <file alias="logotype.jpg">resources/img/logotype.jpg</file>
         <file alias="unknown.jpg">resources/img/unknown.jpg</file>
+        <file alias="back_arrow.jpg">resources/img/back_arrow.jpg</file>
+        <file alias="up_arrow.png">resources/img/up_arrow.png</file>
+        <file alias="down_arrow.png">resources/img/down_arrow.png</file>
     </qresource>
     <qresource prefix="/qss">
-        <file alias="main.qss">resources/qss/main.qss</file>
+        <file alias="login_window.qss">resources/qss/login_window.qss</file>
+        <file alias="project_list_window.qss">resources/qss/project_list_window.qss</file>
+        <file alias="ticket_list_window.qss">resources/qss/ticket_list_window.qss</file>
+        <file alias="ticket_edit_window.qss">resources/qss/ticket_edit_window.qss</file>
     </qresource>
 </RCC>

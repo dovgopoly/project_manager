@@ -10,6 +10,14 @@ Authenticator &Authenticator::GetInstance() {
     return authenticator;
 }
 
+void Authenticator::SetCurrentToken(const QString &token) {
+    m_token = token;
+}
+
+QString Authenticator::GetCurrentToken() const {
+    return m_token;
+}
+
 void Authenticator::AuthenticateUser(const QString &login, const QString &password) const {
     using namespace private_config;
     auto *const response = Api::GetInstance().Post(

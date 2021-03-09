@@ -6,15 +6,9 @@
 class ImageLoader : public AbstractRequester {
  Q_OBJECT
  public:
-    ImageLoader(const ImageLoader &) = delete;
-    ImageLoader &operator=(const ImageLoader &) = delete;
-
-    static ImageLoader &GetInstance();
+    explicit ImageLoader(QObject *parent = nullptr);
 
     void LoadImage(const QUrl &url) const;
-
- private:
-    explicit ImageLoader(QObject *parent = nullptr);
 };
 
 #endif

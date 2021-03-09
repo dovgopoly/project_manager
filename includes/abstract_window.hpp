@@ -2,23 +2,28 @@
 #define ABSTRACT_WINDOW_HPP
 
 #include <QWidget>
-#include <QStackedLayout>
+
+#include "stack.hpp"
 
 class AbstractWindow : public QWidget {
  Q_OBJECT
  public:
-    explicit AbstractWindow(QStackedLayout &stack, QWidget *parent = nullptr);
-    ~AbstractWindow() override = default;
+    Stack &GetStack();
+
+    virtual int GetHeaderFlags() const;
+    virtual QString GetHeaderTitle() const;
 
  protected:
-    void PutSelfToStack();
-    void RemoveSelfFromStack();
-    QStackedLayout &GetStack();
+    explicit AbstractWindow(Stack &stack, QWidget *parent = nullptr);
+
     void SetStyleSheet(const QString &qss_file_path);
 
  private:
-    QStackedLayout &m_stack;
-    QWidget *m_previous_widget;
+    Stack &m_stack;
+
+ public slots:
+    void PutSelfToStack();
+    void RemoveSelfFromStack();
 };
 
 #endif

@@ -1,29 +1,3 @@
-QScrollBar:vertical {
-    background: #32CC99;
-    width: 3px;
-}
-
-QScrollBar::handle:vertical {
-    background: black;
-    width: 3px;
-}
-
-QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal {
-    border: none;
-    background: none;
-    color: none;
-}
-
-QScrollBar::add-line:horizontal {
-    border: none;
-    background: none;
-}
-
-QScrollBar::sub-line:horizontal {
-    border: none;
-    background: none;
-}
-
 QWidget#LoginWindow {
     background-color: #4b7eb7;
 }
@@ -63,9 +37,4 @@ QWidget#ForgotPasswordButton:hover {
 QWidget#LoginWindow > QLabel {
     font-weight: bold;
     color: #739ed1;
-}
-
-QWidget#Header {
-    background-color: lightgray;
-    border-bottom: 1px solid black;
 }

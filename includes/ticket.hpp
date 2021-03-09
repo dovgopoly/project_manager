@@ -17,6 +17,11 @@ class Ticket {
     QString GetDescription() const;
     int GetPriority() const;
 
+    void SetId(int id);
+    void SetName(QString name);
+    void SetDescription(QString description);
+    void SetPriority(int priority);
+
  private:
     int m_id;
     QString m_name;

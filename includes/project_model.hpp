@@ -16,8 +16,24 @@ class ProjectModel : public QAbstractListModel {
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
+    void UpdateSelf();
+
+    enum Roles {
+        ChosenProjectRole = Qt::UserRole
+    };
+
+ signals:
+    void UpdatingBegin();
+    void UpdatingEnd();
+
  private:
-    QList<Project> m_list;
+    void Initialize();
+
+    QList<Project> m_project_list;
+    QModelIndex m_chosen_project;
+
+ private slots:
+    void ParseProjectsToList(const QByteArray &json_to_parse);
 };
 
 #endif

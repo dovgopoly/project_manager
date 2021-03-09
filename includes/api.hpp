@@ -15,8 +15,7 @@
 class Api : public QObject {
  Q_OBJECT
  public:
-    Api(const Api &) = delete;
-    Api &operator=(const Api &) = delete;
+    Q_DISABLE_COPY(Api);
 
     static Api &GetInstance();
 
@@ -28,9 +27,9 @@ class Api : public QObject {
         UNAUTHORIZED = 401,
         NOT_FOUND = 404
     };
+
  private:
     explicit Api(QObject *parent = nullptr);
-    ~Api() override = default;
 
     QNetworkRequest BuildRequest(const QUrl &url, const QMap<QString, QString> &headers) const;
 

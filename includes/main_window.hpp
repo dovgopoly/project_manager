@@ -4,7 +4,13 @@
 #include <QWidget>
 #include <QStackedLayout>
 
+#include <stack>
+
+#include "abstract_window.hpp"
 #include "login_window.hpp"
+#include "image.hpp"
+
+class Header;
 
 class MainWindow : public QWidget {
  Q_OBJECT
@@ -12,8 +18,15 @@ class MainWindow : public QWidget {
     explicit MainWindow(QWidget *parent = nullptr);
 
  private:
+    void SetupHeader(AbstractWindow *current_top_window);
+
     void Initialize();
-    QStackedLayout *const m_stack;
+
+    Stack *const m_stack;
+    Header *const m_header;
+
+ private slots:
+    void SetupWindow(AbstractWindow *current_top_window);
 };
 
 #endif
