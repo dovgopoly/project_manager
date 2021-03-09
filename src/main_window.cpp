@@ -1,4 +1,3 @@
-#include <QGraphicsDropShadowEffect>
 #include "../includes/main_window.hpp"
 #include "../includes/config.hpp"
 #include "../includes/project_list_window.hpp"

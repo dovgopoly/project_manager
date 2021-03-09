@@ -7,7 +7,7 @@
 #include "image.hpp"
 
 class Header : public QWidget {
-    Q_OBJECT
+ Q_OBJECT
  public:
     friend class MainWindow;
 
